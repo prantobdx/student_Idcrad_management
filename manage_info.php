@@ -3,7 +3,8 @@
 
 require_once ("conn.php");
 
-//insert data  
+$conn = new DbConnection();
+//insert data student
 
 	if (isset($_POST['save']))
 	 {
@@ -15,7 +16,7 @@ require_once ("conn.php");
 
 		$sql = "INSERT INTO student (name, address, institute, image) VALUES ('$name', '$address','$institute', '$img') "; 
 
- 		 $result = mysqli_query($conn,$sql);
+ 		 $result = mysqli_query($conn->connect(),$sql);
  		  
  		  if($result)
  		  {
@@ -41,7 +42,7 @@ $edit_institute = $_POST['institute'];
 $edit_image = $_FILES['uploadfile']['name'];
 
 $query = "UPDATE student SET name='$edit_name',address='$edit_address', institute='$edit_institute',image='$edit_image' WHERE id='$edit_id'";
-$query_run = mysqli_query($conn,$query);
+$query_run = mysqli_query($conn->connect(),$query);
 
 if($query_run)
  {
@@ -63,7 +64,7 @@ if(isset($_POST['delete_btn']))
 	$s_image = $_POST['delete_image']; 
 
 	$query ="DELETE FROM student WHERE id='$id' ";
-	$query_run = mysqli_query($conn,$query);
+	$query_run = mysqli_query($conn->connect(),$query);
 	if ($query_run)
 	{
 	 unlink("student-image/".$s_image);	

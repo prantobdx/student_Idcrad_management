@@ -1,9 +1,10 @@
 
 <?php
 require_once ("conn.php");
- $results = mysqli_query($conn, "SELECT * FROM student");
-?>
 
+$conn = new DbConnection();
+
+ $results = mysqli_query($conn->connect(), "SELECT * FROM student"); ?>
 <!DOCTYPE html>
 <html>
 <head>

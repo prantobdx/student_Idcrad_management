@@ -18,7 +18,10 @@
 		$id = $_POST['edit_id'];
 
 		$query = "SELECT * FROM student WHERE id='$id' ";
-		$query_run = mysqli_query($conn,$query);
+
+		$conn = new DbConnection();
+
+		$query_run = mysqli_query($conn->connect(),$query);
 		foreach($query_run as $row)
 		{
        ?>
